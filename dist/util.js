@@ -1,4 +1,4 @@
-Object.defineProperty(exports,"__esModule",{value:true});exports.delay=exports.matchUrl=exports.parseRequest=exports.parseUrl=exports.prueUrl=exports.isNull=undefined;var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};var _url=require('url');var _url2=_interopRequireDefault(_url);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+Object.defineProperty(exports,"__esModule",{value:true});exports.delay=exports.matchUrl=exports.parseRequest=exports.parseUrl=exports.prueUrl=exports.isNull=undefined;var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};var _urijs=require('urijs');var _urijs2=_interopRequireDefault(_urijs);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 var isNull=function isNull(obj){
 if('undefined'===typeof obj||obj===null){
@@ -9,9 +9,9 @@ return false;
 };
 
 var parseUrlPath=function parseUrlPath(url){
-var parsed=_url2.default.parse(url);
+var parsed=new _urijs2.default(url);
 
-return decodeURIComponent(parsed.pathname);
+return parsed.pathname();
 };
 
 var parseParamStr=function parseParamStr(paramStr,isGet){

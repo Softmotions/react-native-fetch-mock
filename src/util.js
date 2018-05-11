@@ -1,4 +1,4 @@
-import nodejsUrl from 'url';
+import URI from 'urijs';
 
 const isNull = (obj) => {
   if ('undefined' === typeof obj || obj === null) {
@@ -9,9 +9,9 @@ const isNull = (obj) => {
 };
 
 const parseUrlPath = (url) => {
-  const parsed = nodejsUrl.parse(url);
+  const parsed = new URI(url);
 
-  return decodeURIComponent(parsed.pathname);
+  return parsed.pathname();
 };
 
 const parseParamStr = (paramStr, isGet) => {
