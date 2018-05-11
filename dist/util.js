@@ -1,4 +1,5 @@
-Object.defineProperty(exports,"__esModule",{value:true});var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};
+Object.defineProperty(exports,"__esModule",{value:true});exports.delay=exports.matchUrl=exports.parseRequest=exports.parseUrl=exports.prueUrl=exports.isNull=undefined;var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};var _url=require('url');var _url2=_interopRequireDefault(_url);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+
 var isNull=function isNull(obj){
 if('undefined'===typeof obj||obj===null){
 return true;
@@ -7,13 +8,10 @@ return true;
 return false;
 };
 
-var removeProctol=function removeProctol(url){
-var index=-1;
-if((index=url.indexOf('://'))>-1){
+var parseUrlPath=function parseUrlPath(url){
+var parsed=_url2.default.parse(url);
 
-return url.substring(index);
-}
-return url;
+return decodeURIComponent(parsed.pathname);
 };
 
 var parseParamStr=function parseParamStr(paramStr,isGet){
@@ -77,16 +75,18 @@ return result;
 };
 
 var matchUrl=function matchUrl(sourceUrl,targetUrl){
+sourceUrl=parseUrlPath(sourceUrl);
+targetUrl=parseUrlPath(targetUrl);
+
 if(sourceUrl===targetUrl){
 return{
 result:true,
 params:{}};
 
 }
-var sourceUrlWithoutProctol=removeProctol(sourceUrl);
-var targetUrlWithoutProctol=removeProctol(targetUrl);
-var sourceUrlSplits=sourceUrlWithoutProctol.split('/');
-var targetUrlSplits=targetUrlWithoutProctol.split('/');
+
+var sourceUrlSplits=sourceUrl.split('/');
+var targetUrlSplits=targetUrl.split('/');
 
 if(sourceUrlSplits.length!==targetUrlSplits.length){
 return{
