@@ -1,5 +1,5 @@
 {
-  "name": "react-native-fetch-mock",
+  "name": "itgro-react-native-fetch-mock",
   "version": "0.7.0",
   "description": "fetch mock for react-native",
   "main": "index.js",
@@ -18,18 +18,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WhatAKitty/react-native-fetch-mock.git"
+    "url": "git+https://github.com/itgro/react-native-fetch-mock.git"
   },
   "keywords": [
     "react-native",
     "fetch-mock"
   ],
-  "author": "WhatAKitty",
+  "author": "Itgro forked from WhatAKitty",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/WhatAKitty/react-native-fetch-mock/issues"
+    "url": "https://github.com/itgro/react-native-fetch-mock/issues"
   },
-  "homepage": "https://github.com/WhatAKitty/react-native-fetch-mock#readme",
+  "homepage": "https://github.com/itgro/react-native-fetch-mock#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
@@ -42,6 +42,7 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
+    "immutable": "^3.8.2",
     "mockjs": "^1.0.1-beta3",
     "path-to-regexp": "^2.1.0"
   }

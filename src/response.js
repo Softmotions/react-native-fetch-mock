@@ -1,25 +1,16 @@
-
-const _status = Symbol('status');
-const _data = Symbol('data');
-const _statusText = Symbol('statusText');
+import {Map} from 'immutable';
 
 class Response {
   constructor({
     status,
     data = {},
+    headers = {},
     statusText = '',
   }) {
-    this[_status] = status;
-    this[_data] = data;
-    this[_statusText] = statusText;
-  }
-
-  get status() {
-    return this[_status];
-  }
-
-  get statusText() {
-    return this[_statusText];
+    this.status = status;
+    this.data = data;
+    this.headers = Map(headers);
+    this.statusText = statusText;
   }
 
   get ok() {
@@ -32,14 +23,14 @@ class Response {
 
   text() {
     try {
-      return Promise.resolve(JSON.stringify(this[_data]));
+      return Promise.resolve(JSON.stringify(this.data));
     } catch (err) {
       return Promise.reject(new Error('failed text invoke.'));
     }
   }
 
   json() {
-    return this[_data];
+    return this.data;
   }
 
 }
