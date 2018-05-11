@@ -1,3 +1,4 @@
+import nodejsUrl from 'url';
 
 const isNull = (obj) => {
   if ('undefined' === typeof obj || obj === null) {
@@ -7,13 +8,10 @@ const isNull = (obj) => {
   return false;
 };
 
-const removeProctol = (url) => {
-  let index = -1;
-  if ((index = url.indexOf('://')) > -1) {
-    // contains proctol
-    return url.substring(index);
-  }
-  return url;
+const parseUrlPath = (url) => {
+  const parsed = nodejsUrl.parse(url);
+
+  return decodeURIComponent(parsed.pathname);
 };
 
 const parseParamStr = (paramStr, isGet) => {
@@ -77,16 +75,18 @@ const prueUrl = (url) => {
 };
 
 const matchUrl = (sourceUrl, targetUrl) => {
+  sourceUrl = parseUrlPath(sourceUrl);
+  targetUrl = parseUrlPath(targetUrl);
+
   if (sourceUrl === targetUrl) {
     return {
       result: true,
       params: {},
     };
   }
-  const sourceUrlWithoutProctol = removeProctol(sourceUrl);
-  const targetUrlWithoutProctol = removeProctol(targetUrl);
-  const sourceUrlSplits = sourceUrlWithoutProctol.split('/');
-  const targetUrlSplits = targetUrlWithoutProctol.split('/');
+
+  const sourceUrlSplits = sourceUrl.split('/');
+  const targetUrlSplits = targetUrl.split('/');
 
   if (sourceUrlSplits.length !== targetUrlSplits.length) {
     return {
