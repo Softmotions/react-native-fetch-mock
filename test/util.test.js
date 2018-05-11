@@ -105,6 +105,10 @@ describe('test util methods', () => {
     });
   });
 
+  it('match url with method', async () => {
+    expect(matchUrl('http://www.baidu.com', 'GET http://www.baidu.com')).to.ok();
+  });
+
   it('delay 5000ms', async () => {
     const start = new Date().getTime();
     await delay(5000);
