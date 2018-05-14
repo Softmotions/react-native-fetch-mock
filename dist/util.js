@@ -13,7 +13,7 @@ url=url.replace('^(GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH])\s','')
 
 var parsed=new _urijs2.default(url);
 
-return parsed.pathname();
+return parsed.pathname().replace(/\\$/,'');
 };
 
 var parseParamStr=function parseParamStr(paramStr,isGet){

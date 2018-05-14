@@ -69,6 +69,9 @@ describe('test util methods', () => {
   it('match url', async () => {
     expect(matchUrl('http://www.baidu.com', 'http://www.baidu.com')).to.ok();
   });
+  it('match url with trailing slash', async () => {
+    expect(matchUrl('http://www.baidu.com/{id}', 'http://www.baidu.com/123/')).to.ok();
+  });
   it('match url with inside parameter', async () => {
     expect(matchUrl('http://www.baidu.com/{id}', 'http://www.baidu.com/123')).to.be.eql({
       result: true,
