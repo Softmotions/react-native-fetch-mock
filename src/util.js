@@ -13,7 +13,7 @@ const parseUrlPath = (url) => {
 
   const parsed = new URI(url);
 
-  return parsed.pathname().replace(/\\$/, '');
+  return parsed.pathname().replace(/\/$/, '');
 };
 
 const parseParamStr = (paramStr, isGet) => {
