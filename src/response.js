@@ -1,16 +1,41 @@
-import {Map} from 'immutable';
+import { Map } from 'immutable';
 
 class Response {
-  constructor({
-    status,
-    data = {},
-    headers = {},
-    statusText = '',
-  }) {
+  constructor() {
+    this.status = 200;
+    this.data = {};
+    this.headers = Map();
+    this.statusText = '';
+  }
+
+  success(payload) {
+    this.status = 200;
+    this.data = {
+      is_ok: true,
+      status: 'ok',
+      description: 'OK',
+      payload
+    };
+  }
+
+  failure(description, payload = null, status = null) {
+    if (payload * 1 + '' === payload + '') {
+      status = payload;
+      payload = null;
+    }
+
+    if (!status) {
+      status = 500;
+    }
+
     this.status = status;
-    this.data = data;
-    this.headers = Map(headers);
-    this.statusText = statusText;
+
+    this.data = {
+      is_ok: false,
+      status: 'error',
+      description: description,
+      payload
+    };
   }
 
   get ok() {

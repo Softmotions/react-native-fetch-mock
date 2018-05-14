@@ -1,7 +1,7 @@
 import { Mock } from '../src';
 
 export default {
-  '/api/users': ({ params }) => {
+  '/api/users': ({ params }, response) => {
     const all = [
       {
         name: 'John',
@@ -30,12 +30,11 @@ export default {
     } else {
       filtered = all;
     }
-    return {
-      status: 200,
-      data: filtered,
-    };
+
+    response.status = 200;
+    response.data = filtered;
   },
-  '/api/users/mockjs': ({ params }) => {
+  '/api/users/mockjs': ({ params }, response) => {
     const all = Mock.mock({
       'list|2': [{
         'id|+1': 1,
@@ -61,35 +60,27 @@ export default {
     } else {
       filtered = all;
     }
-    return {
-      status: 200,
-      data: filtered,
-    };
+    response.status = 200;
+    response.data = filtered;
   },
-  '/api/users/{userId}': ({ urlparams }) => {
-    return {
-      status: 200,
-      data: {
-        userId: urlparams.userId,
-      },
-    };
-  },
-  '/api/users/pru/{userId}': ({ urlparams }) => {
-    return {
+  '/api/users/{userId}': ({ urlparams }, response) => {
+    response.status = 200;
+    response.data = {
       userId: urlparams.userId,
     };
   },
-  'POST /api/users': () => {
-    return {
-      status: 201,
+  '/api/users/pru/{userId}': ({ urlparams }, response) => {
+    response.data = {
+      userId: urlparams.userId,
     };
   },
-  'PUT /api/users/{userId}': ({ urlparams }) => {
-    return {
-      status: 204,
-      data: {
-        userId: urlparams.userId,
-      },
+  'POST /api/users': (request, response) => {
+    response.status = 201;
+  },
+  'PUT /api/users/{userId}': ({ urlparams }, response) => {
+    response.status = 204;
+    response.data = {
+      userId: urlparams.userId,
     };
   }
-}
+};

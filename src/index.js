@@ -1,5 +1,5 @@
 import pathToRegexp from 'path-to-regexp';
-import { parseRequest, matchUrl, isNull, delay } from './util';
+import { parseRequest, matchUrl, delay } from './util';
 import Response from './response';
 
 class FetchMock {
@@ -124,21 +124,17 @@ class FetchMock {
     if ('function' !== typeof mock.func) {
       throw new Error('There is no url defined in __mocks__');
     }
-    let obj = mock.func(request);
 
-    if (isNull(obj)) {
-      throw 'response data should not be undefined or null, it will be an object or an array at least';
+    const response = new Response();
+
+    try {
+      mock.func(request, response);
+    } catch (error) {
+      if (response.status === 200) {
+        response.failure();
+      }
     }
 
-    // resolve prue data object
-    if (isNull(obj.status)) {
-      obj = {
-        status: 200,
-        data: obj,
-      };
-    }
-
-    const response = new Response(obj);
     const delayTime = options.delay || this.delayTime || 0;
     return delay(delayTime).then(() => Promise.resolve(response));
   }
