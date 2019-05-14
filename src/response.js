@@ -47,6 +47,9 @@ class Response {
   }
 
   text() {
+    if (typeof this.data == 'string') {
+      return Promise.resolve(this.data);
+    }
     try {
       return Promise.resolve(JSON.stringify(this.data));
     } catch (err) {
@@ -55,9 +58,12 @@ class Response {
   }
 
   json() {
-    return this.data;
+    if (typeof this.data == 'string') {
+      return Promise.resolve(JSON.parse(this.data));
+    } else {
+      return Promise.resolve(this.data);
+    }
   }
-
 }
 
 export default Response;
