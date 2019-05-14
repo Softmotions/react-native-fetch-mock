@@ -1,11 +1,11 @@
 {
-  "name": "itgro-react-native-fetch-mock",
-  "version": "0.7.0",
+  "name": "@softmotions/react-native-fetch-mock",
+  "version": "0.7.1",
   "description": "fetch mock for react-native",
   "main": "index.js",
   "scripts": {
     "build": "yarn lint && yarn test && ./node_modules/.bin/babel src --out-dir dist",
-    "test": "./node_modules/.bin/mocha --compilers js:babel-core/register",
+    "test": "./node_modules/.bin/mocha --require babel-core/register",
     "lint": "./node_modules/.bin/eslint src/**/*.js"
   },
   "standard": {
@@ -31,20 +31,23 @@
   },
   "homepage": "https://github.com/itgro/react-native-fetch-mock#readme",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.24.1",
-    "babel-eslint": "^7.2.2",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-react-native": "^1.9.1",
-    "eslint": "^3.19.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-react-native": "^4.0.1",
+    "eslint": "^5.16.0",
     "expect.js": "^0.3.1",
     "isomorphic-fetch": "^2.2.1",
-    "mocha": "^3.2.0"
+    "mocha": "^6.1.4"
   },
   "dependencies": {
-    "immutable": "^3.8.2",
+    "immutable": "^4.0.0-rc.12",
     "mockjs": "^1.0.1-beta3",
-    "path-to-regexp": "^2.1.0",
+    "path-to-regexp": "^3.0.0",
     "urijs": "^1.19.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

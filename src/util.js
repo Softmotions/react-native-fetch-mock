@@ -9,7 +9,7 @@ const isNull = (obj) => {
 };
 
 const parseUrlPath = (url) => {
-  url = url.replace('^(GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH])\s', '');
+  url = url.replace(/^(GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH])\s/, '');
 
   const parsed = new URI(url);
 
